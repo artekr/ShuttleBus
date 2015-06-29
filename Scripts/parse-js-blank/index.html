@@ -23,6 +23,10 @@
       <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
     </ul>
 
+    <button onclick="myFunction()">Upload Data</button>
+
+    <p id="demo"></p>
+
     <div style="display:none" class="error">
       Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
     </div>
@@ -39,18 +43,12 @@
   </div>
 
   <script type="text/javascript">
-    Parse.initialize("APPLICATION_ID", "JAVASCRIPT_KEY");
+    Parse.initialize("giF8a6oUsrGc8hBGamKh31veeKJNyUKeSpneOfvI", "bXob2Ui1VQG18JUHUMwEhz8YL6wFNdhTsA16pVIw");
+
+    function myFunction() {
+      document.getElementById("demo").innerHTML = "Hello World";
+    }
     
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-      testObject.save({foo: "bar"}, {
-      success: function(object) {
-        $(".success").show();
-      },
-      error: function(model, error) {
-        $(".error").show();
-      }
-    });
   </script>
 </body>
 
