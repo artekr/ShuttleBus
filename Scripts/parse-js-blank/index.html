@@ -23,7 +23,7 @@
       <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
     </ul>
 
-    <button onclick="myFunction()">Upload Data</button>
+    <button onclick="friday()">Upload Data</button>
 
     <p id="demo"></p>
 
@@ -45,8 +45,195 @@
   <script type="text/javascript">
     Parse.initialize("giF8a6oUsrGc8hBGamKh31veeKJNyUKeSpneOfvI", "bXob2Ui1VQG18JUHUMwEhz8YL6wFNdhTsA16pVIw");
 
-    function myFunction() {
-      document.getElementById("demo").innerHTML = "Hello World";
+	var sgw_depart_time_array = ["8:15", "9:15", "10:15", "11:45", "12:45", "13:45", "14:45", "16:15", "17:15", "18:15", "19:15", "20:15"];
+	var loyola_depart_time_array = ["7:45", "8:45", "9:45", "11:15", "12:15", "13:15", "14:15", "15:45", "16:45", "17:45", "18:45", "19:45"];
+	
+	var sgw_depart_time_friday_array = ["8:15", "9:15", "10:15", "11:45", "12:45", "13:45", "14:45"];
+	var loyola_depart_time_friday_array = ["7:45", "8:45", "9:45", "11:15", "12:15", "13:15", "14:15"];
+	
+	function monday() {
+	  
+	  var Monday = Parse.Object.extend("monday");
+	  
+	  for(i=0; i < sgw_depart_time_array.length; i++) {
+		var monday = new Monday();
+		
+		monday.set("campus", "sgw");
+		monday.set("depart_time", sgw_depart_time_array[i]);
+		monday.set("time_order", i);
+		
+		monday.save(null, {
+		  success: function(monday) {
+			document.getElementById("demo").innerHTML = monday.id;
+		  },
+		  error: function(monday, error) {
+		  }
+	    });
+	  }
+
+	  for(i=0; i < loyola_depart_time_array.length; i++) {
+		var monday = new Monday();
+		
+		monday.set("campus", "loyola");
+		monday.set("depart_time", loyola_depart_time_array[i]);
+		monday.set("time_order", i);
+		
+		monday.save(null, {
+		  success: function(monday) {
+			document.getElementById("demo").innerHTML = monday.id;
+		  },
+		  error: function(monday, error) {
+		  }
+	    });
+	  }
+    }
+	  
+    function tuesday() {
+	  
+	  var Tuesday = Parse.Object.extend("tuesday");
+	  
+	  for(i=0; i < sgw_depart_time_array.length; i++) {
+		var tuesday = new Tuesday();
+		
+		tuesday.set("campus", "sgw");
+		tuesday.set("depart_time", sgw_depart_time_array[i]);
+		tuesday.set("time_order", i);
+		
+		tuesday.save(null, {
+		  success: function(tuesday) {
+			document.getElementById("demo").innerHTML = tuesday.id;
+		  },
+		  error: function(tuesday, error) {
+		  }
+	    });
+	  }
+
+	  for(i=0; i < loyola_depart_time_array.length; i++) {
+		var tuesday = new Tuesday();
+		
+		tuesday.set("campus", "loyola");
+		tuesday.set("depart_time", loyola_depart_time_array[i]);
+		tuesday.set("time_order", i);
+		
+		tuesday.save(null, {
+		  success: function(tuesday) {
+			document.getElementById("demo").innerHTML = tuesday.id;
+		  },
+		  error: function(tuesday, error) {
+		  }
+	    });
+	  }
+    }
+	
+	function wednesday() {
+	  
+	  var Wednesday = Parse.Object.extend("wednesday");
+	  
+	  for(i=0; i < sgw_depart_time_array.length; i++) {
+		var wednesday = new Wednesday();
+		
+		wednesday.set("campus", "sgw");
+		wednesday.set("depart_time", sgw_depart_time_array[i]);
+		wednesday.set("time_order", i);
+		
+		wednesday.save(null, {
+		  success: function(wednesday) {
+			document.getElementById("demo").innerHTML = wednesday.id;
+		  },
+		  error: function(wednesday, error) {
+		  }
+	    });
+	  }
+
+	  for(i=0; i < loyola_depart_time_array.length; i++) {
+		var wednesday = new Wednesday();
+		
+		wednesday.set("campus", "loyola");
+		wednesday.set("depart_time", loyola_depart_time_array[i]);
+		wednesday.set("time_order", i);
+		
+		wednesday.save(null, {
+		  success: function(wednesday) {
+			document.getElementById("demo").innerHTML = wednesday.id;
+		  },
+		  error: function(wednesday, error) {
+		  }
+	    });
+	  }
+    }
+	
+	function thursday() {
+	  
+	  var Thursday = Parse.Object.extend("thursday");
+	  
+	  for(i=0; i < sgw_depart_time_array.length; i++) {
+		var thursday = new Thursday();
+		
+		thursday.set("campus", "sgw");
+		thursday.set("depart_time", sgw_depart_time_array[i]);
+		thursday.set("time_order", i);
+		
+		thursday.save(null, {
+		  success: function(thursday) {
+			document.getElementById("demo").innerHTML = thursday.id;
+		  },
+		  error: function(thursday, error) {
+		  }
+	    });
+	  }
+
+	  for(i=0; i < loyola_depart_time_array.length; i++) {
+		var thursday = new Thursday();
+		
+		thursday.set("campus", "loyola");
+		thursday.set("depart_time", loyola_depart_time_array[i]);
+		thursday.set("time_order", i);
+		
+		thursday.save(null, {
+		  success: function(thursday) {
+			document.getElementById("demo").innerHTML = thursday.id;
+		  },
+		  error: function(thursday, error) {
+		  }
+	    });
+	  }
+    }
+	
+	function friday() {
+	  
+	  var Friday = Parse.Object.extend("friday");
+	  
+	  for(i=0; i < sgw_depart_time_friday_array.length; i++) {
+		var friday = new Friday();
+		
+		friday.set("campus", "sgw");
+		friday.set("depart_time", sgw_depart_time_friday_array[i]);
+		friday.set("time_order", i);
+		
+		friday.save(null, {
+		  success: function(friday) {
+			document.getElementById("demo").innerHTML = friday.id;
+		  },
+		  error: function(friday, error) {
+		  }
+	    });
+	  }
+
+	  for(i=0; i < loyola_depart_time_friday_array.length; i++) {
+		var friday = new Friday();
+		
+		friday.set("campus", "loyola");
+		friday.set("depart_time", loyola_depart_time_friday_array[i]);
+		friday.set("time_order", i);
+		
+		friday.save(null, {
+		  success: function(friday) {
+			document.getElementById("demo").innerHTML = friday.id;
+		  },
+		  error: function(friday, error) {
+		  }
+	    });
+	  }
     }
     
   </script>
