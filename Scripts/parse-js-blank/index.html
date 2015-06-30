@@ -23,7 +23,11 @@
       <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
     </ul>
 
-    <button onclick="friday()">Upload Data</button>
+    <button onclick="monday()">Monday</button>
+    <button onclick="tuesday()">Tuesday</button>
+    <button onclick="wednesday()">Wednesday</button>
+    <button onclick="thursday()">Thursday</button>
+    <button onclick="friday()">Friday</button>
 
     <p id="demo"></p>
 
@@ -53,7 +57,7 @@
 	
 	function monday() {
 	  
-	  var Monday = Parse.Object.extend("monday");
+	  var Monday = Parse.Object.extend("Monday");
 	  
 	  for(i=0; i < sgw_depart_time_array.length; i++) {
 		var monday = new Monday();
@@ -90,7 +94,7 @@
 	  
     function tuesday() {
 	  
-	  var Tuesday = Parse.Object.extend("tuesday");
+	  var Tuesday = Parse.Object.extend("Tuesday");
 	  
 	  for(i=0; i < sgw_depart_time_array.length; i++) {
 		var tuesday = new Tuesday();
@@ -127,7 +131,7 @@
 	
 	function wednesday() {
 	  
-	  var Wednesday = Parse.Object.extend("wednesday");
+	  var Wednesday = Parse.Object.extend("Wednesday");
 	  
 	  for(i=0; i < sgw_depart_time_array.length; i++) {
 		var wednesday = new Wednesday();
@@ -164,7 +168,7 @@
 	
 	function thursday() {
 	  
-	  var Thursday = Parse.Object.extend("thursday");
+	  var Thursday = Parse.Object.extend("Thursday");
 	  
 	  for(i=0; i < sgw_depart_time_array.length; i++) {
 		var thursday = new Thursday();
@@ -201,7 +205,7 @@
 	
 	function friday() {
 	  
-	  var Friday = Parse.Object.extend("friday");
+	  var Friday = Parse.Object.extend("Friday");
 	  
 	  for(i=0; i < sgw_depart_time_friday_array.length; i++) {
 		var friday = new Friday();

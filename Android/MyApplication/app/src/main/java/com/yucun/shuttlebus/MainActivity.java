@@ -7,8 +7,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
+import com.yucun.shuttlebus.adapter.MondayListAdapter;
+import com.yucun.shuttlebus.model.Monday;
 import com.yucun.shuttlebus.service.LocationService;
 
 import java.util.concurrent.TimeUnit;
@@ -26,6 +31,7 @@ public class MainActivity extends ActionBarActivity {
     private static final long LOCATION_TIMEOUT_SECONDS = 20;
 
     @InjectView(R.id.title) TextView title;
+    @InjectView(R.id.listview) ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,21 @@ public class MainActivity extends ActionBarActivity {
                 public void onError(Throwable e) {
                 }
             });
+
+        // Set up the Parse query to use in the adapter
+        ParseQueryAdapter.QueryFactory<Monday> factory = new ParseQueryAdapter.QueryFactory<Monday>() {
+            public ParseQuery<Monday> create() {
+                ParseQuery<Monday> query = Monday.getQuery();
+                query.orderByDescending("createdAt");
+                query.fromLocalDatastore();
+                return query;
+            }
+        };
+
+        MondayListAdapter mondayListAdapter = new MondayListAdapter(this, factory);
+
+        // Attach the query adapter to the view
+        listview.setAdapter(mondayListAdapter);
     }
 
     @Override
