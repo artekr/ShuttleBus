@@ -1,5 +1,15 @@
 # ShuttleBus
 
+Android
+-------
+
+iOS
+-------
+
+Updating Bus Schedule Web App(Javascript)
+-------
+
+
 License
 -------
 
