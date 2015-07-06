@@ -1,7 +1,17 @@
 # ShuttleBus
 
+This App is used for checking concordia bus schedule. 
+
+Data model: sunday, monday, tuesday, wednesday, thursday, friday, saturday
+
+Integration:    Parse(Push notification, Local data store, Core Database) 
+                Crashlytics
+                Google Ads
+
 Android
 -------
+
+Material Design Provided.
 
 iOS
 -------
