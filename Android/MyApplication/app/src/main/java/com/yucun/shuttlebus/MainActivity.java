@@ -1,13 +1,13 @@
 package com.yucun.shuttlebus;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.yucun.shuttlebus.fragment.ScheduleFragment;
 
 import butterknife.ButterKnife;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
