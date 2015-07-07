@@ -78,8 +78,8 @@ public class ScheduleFragment extends Fragment {
         ButterKnife.inject(this, rootView);
 
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-
+        //int day = calendar.get(Calendar.DAY_OF_WEEK);
+        int day = Calendar.MONDAY;
         switch (day) {
             case Calendar.SUNDAY:
                 // Set up the Parse query to use in the adapter
@@ -111,6 +111,7 @@ public class ScheduleFragment extends Fragment {
                 loyola_listview.setAdapter(sundayLoyolaListAdapter);
 
                 loadSundayFromParse();
+                break;
             case Calendar.MONDAY:
                 // Set up the Parse query to use in the adapter
                 ParseQueryAdapter.QueryFactory<Monday> mondaySGWQueryFactory = new ParseQueryAdapter.QueryFactory<Monday>() {
@@ -141,6 +142,7 @@ public class ScheduleFragment extends Fragment {
                 loyola_listview.setAdapter(mondayLoyolaListAdapter);
 
                 loadMondayFromParse();
+                break;
             case Calendar.TUESDAY:
                 // Set up the Parse query to use in the adapter
                 ParseQueryAdapter.QueryFactory<Tuesday> tuesdaySGWQueryFactory = new ParseQueryAdapter.QueryFactory<Tuesday>() {
@@ -171,6 +173,7 @@ public class ScheduleFragment extends Fragment {
                 loyola_listview.setAdapter(tuesdayLoyolaListAdapter);
 
                 loadTuesdayFromParse();
+                break;
             case Calendar.WEDNESDAY:
                 // Set up the Parse query to use in the adapter
                 ParseQueryAdapter.QueryFactory<Wednesday> wednesdaySGWQueryFactory = new ParseQueryAdapter.QueryFactory<Wednesday>() {
@@ -201,6 +204,7 @@ public class ScheduleFragment extends Fragment {
                 loyola_listview.setAdapter(wednesdayLoyolaListAdapter);
 
                 loadWednesdayFromParse();
+                break;
             case Calendar.THURSDAY:
                 // Set up the Parse query to use in the adapter
                 ParseQueryAdapter.QueryFactory<Thursday>  thursdaySGWQueryFactory
@@ -233,6 +237,7 @@ public class ScheduleFragment extends Fragment {
                 loyola_listview.setAdapter(thursdayLoyolaListAdapter);
 
                 loadThursdayFromParse();
+                break;
             case Calendar.FRIDAY:
                 // Set up the Parse query to use in the adapter
                 ParseQueryAdapter.QueryFactory<Friday> fridaySGWQueryFactory = new ParseQueryAdapter.QueryFactory<Friday>() {
@@ -263,6 +268,7 @@ public class ScheduleFragment extends Fragment {
                 loyola_listview.setAdapter(fridayLoyolaListAdapter);
 
                 loadFridayFromParse();
+                break;
             case Calendar.SATURDAY:
                 // Set up the Parse query to use in the adapter
                 ParseQueryAdapter.QueryFactory<Saturday> saturdaySGWQueryFactory = new ParseQueryAdapter.QueryFactory<Saturday>() {
@@ -293,6 +299,7 @@ public class ScheduleFragment extends Fragment {
                 loyola_listview.setAdapter(saturdayLoyolaListAdapter);
 
                 loadSaturdayFromParse();
+                break;
         }
 
         return rootView;
