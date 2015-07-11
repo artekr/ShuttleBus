@@ -1,19 +1,3 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:style/Theme.Holo.Light">
-        <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="android:actionOverflowButtonStyle">@android:style/Widget.Holo.ActionButton.Overflow</item>
-    </style>
-
-    <style name="MyActionBar" parent="android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@color/purple</item>
-        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
-    </style>
-
-    <!-- ActionBar title text -->
-    <style name="MyActionBarTitleText"
-        parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title.Inverse">
-    </style>
-
 </resources>

@@ -3,6 +3,7 @@ package com.yucun.shuttlebus.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -22,6 +22,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.SaveCallback;
+import com.yucun.shuttlebus.InfoActivity;
 import com.yucun.shuttlebus.R;
 import com.yucun.shuttlebus.adapter.FridayListAdapter;
 import com.yucun.shuttlebus.adapter.MondayListAdapter;
@@ -62,7 +63,6 @@ public class ScheduleFragment extends Fragment {
 
     @InjectView(R.id.sgw_listview) ListView sgw_listview;
     @InjectView(R.id.loyola_listview) ListView loyola_listview;
-    @InjectView(R.id.info_screen) RelativeLayout info_screen;
 
     MondayListAdapter mondaySGWListAdapter;
     MondayListAdapter mondayLoyolaListAdapter;
@@ -346,7 +346,6 @@ public class ScheduleFragment extends Fragment {
                         if (campus.equals("loyola")) {
                             sgw_listview.setVisibility(View.INVISIBLE);
                             loyola_listview.setVisibility(View.VISIBLE);
-                            info_screen.setVisibility(View.INVISIBLE);
                         }
                     }
 
@@ -372,22 +371,19 @@ public class ScheduleFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sgw:
-                info_screen.setVisibility(View.INVISIBLE);
                 sgw_listview.setVisibility(View.VISIBLE);
                 loyola_listview.setVisibility(View.INVISIBLE);
 
                 return true;
             case R.id.loyola:
-                info_screen.setVisibility(View.INVISIBLE);
                 sgw_listview.setVisibility(View.INVISIBLE);
                 loyola_listview.setVisibility(View.VISIBLE);
 
                 return true;
             case R.id.info:
-                sgw_listview.setVisibility(View.INVISIBLE);
-                loyola_listview.setVisibility(View.INVISIBLE);
-                info_screen.setVisibility(View.VISIBLE);
-
+                Intent intent = new Intent();
+                intent.setClass(getActivity(), InfoActivity.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
