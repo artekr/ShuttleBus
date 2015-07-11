@@ -2,6 +2,9 @@ package com.yucun.shuttlebus.fragment;
 
 
 import android.app.Fragment;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,17 +37,28 @@ import com.yucun.shuttlebus.model.Sunday;
 import com.yucun.shuttlebus.model.Thursday;
 import com.yucun.shuttlebus.model.Tuesday;
 import com.yucun.shuttlebus.model.Wednesday;
+import com.yucun.shuttlebus.service.LocationService;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by yucunli on 2015-07-02.
  */
 public class ScheduleFragment extends Fragment {
+
+    private static final long LOCATION_TIMEOUT_SECONDS = 20;
+
+    private final Location LOYOLA_LOCATION = new Location("");
+    private final Location SGW_LOCATION = new Location("");
 
     @InjectView(R.id.sgw_listview) ListView sgw_listview;
     @InjectView(R.id.loyola_listview) ListView loyola_listview;
@@ -69,6 +83,12 @@ public class ScheduleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
+        LOYOLA_LOCATION.setLatitude(45.4580804);
+        LOYOLA_LOCATION.setLongitude(-73.6388611);
+
+        SGW_LOCATION.setLatitude(45.4970244);
+        SGW_LOCATION.setLongitude(-73.5792617);
     }
 
     @Override
@@ -301,6 +321,43 @@ public class ScheduleFragment extends Fragment {
                 loadSaturdayFromParse();
                 break;
         }
+
+        final LocationManager locationManager = (LocationManager) getActivity().getApplicationContext()
+                .getSystemService(Context.LOCATION_SERVICE);
+        final LocationService locationService = new LocationService(locationManager);
+
+        // Get our current location.
+        locationService.getLocation()
+                .timeout(LOCATION_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.newThread())
+                .map(new Func1<Location, String>() {
+                    @Override
+                    public String call(final Location location) {
+                        float distanceToSGW = location.distanceTo(SGW_LOCATION);
+                        float distanceToLoyola = location.distanceTo(LOYOLA_LOCATION);
+
+                        return distanceToSGW - distanceToLoyola >= 0 ? "loyola" : "sgw";
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<String>() {
+                    @Override
+                    public void onNext(String campus) {
+                        if (campus.equals("loyola")) {
+                            sgw_listview.setVisibility(View.INVISIBLE);
+                            loyola_listview.setVisibility(View.VISIBLE);
+                            info_screen.setVisibility(View.INVISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+                });
 
         return rootView;
     }

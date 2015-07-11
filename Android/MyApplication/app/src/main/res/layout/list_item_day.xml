@@ -11,6 +11,6 @@
         android:fontFamily="sans-serif"
         android:layout_margin="20dp"
         android:textSize="20sp"
-        android:layout_alignParentLeft="true" />
+        android:gravity="center" />
 
 </LinearLayout>
