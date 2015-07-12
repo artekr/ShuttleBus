@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -53,8 +54,10 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
 
     private static final long LOCATION_TIMEOUT_SECONDS = 20;
 
-    private final Location LOYOLA_LOCATION = new Location("");
-    private final Location SGW_LOCATION = new Location("");
+    private final static Double SGW_LATITUDE = 45.4970244;
+    private final static Double SGW_LONGITUDE = -73.5792617;
+    private final static Double LOYOLA_LATITUDE = 45.4580804;
+    private final static Double LOYOLA_LONGITUDE = -73.6388611;
 
     @InjectView(R.id.sgw_listview) ListView sgw_listview;
     @InjectView(R.id.loyola_listview) ListView loyola_listview;
@@ -81,12 +84,6 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-        LOYOLA_LOCATION.setLatitude(45.4580804);
-        LOYOLA_LOCATION.setLongitude(-73.6388611);
-
-        SGW_LOCATION.setLatitude(45.4970244);
-        SGW_LOCATION.setLongitude(-73.5792617);
     }
 
     @Override
@@ -331,8 +328,15 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                 .map(new Func1<Location, String>() {
                     @Override
                     public String call(final Location location) {
-                        float distanceToSGW = location.distanceTo(SGW_LOCATION);
-                        float distanceToLoyola = location.distanceTo(LOYOLA_LOCATION);
+                        Location sgw_location = new Location("sgw");
+                        sgw_location.setLatitude(SGW_LATITUDE);
+                        sgw_location.setLongitude(SGW_LONGITUDE);
+                        Location loyola_location = new Location("loyola");
+                        loyola_location.setLatitude(LOYOLA_LATITUDE);
+                        loyola_location.setLongitude(LOYOLA_LONGITUDE);
+
+                        float distanceToSGW = location.distanceTo(sgw_location);
+                        float distanceToLoyola = location.distanceTo(loyola_location);
 
                         return distanceToSGW - distanceToLoyola >= 0 ? "loyola" : "sgw";
                     }

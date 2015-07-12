@@ -6,7 +6,6 @@ import com.parse.ParseObject;
 /**
  * Created by yucunli on 2015-07-12.
  */
-@ParseClassName("Monday")
 public class Day extends ParseObject {
     public String getCampus() {
         return getString("campus");
