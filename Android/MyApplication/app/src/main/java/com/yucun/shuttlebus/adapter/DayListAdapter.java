@@ -6,27 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.parse.ParseObject;
 import com.parse.ParseQueryAdapter;
 import com.yucun.shuttlebus.R;
-import com.yucun.shuttlebus.model.Monday;
+import com.yucun.shuttlebus.model.Day;
 import com.yucun.shuttlebus.model.Tuesday;
 
 /**
- * Created by yucunli on 2015-07-02.
+ * Created by yucunli on 2015-07-11.
  */
-public class TuesdayListAdapter extends ParseQueryAdapter<Tuesday> {
+public class DayListAdapter<T extends Day> extends ParseQueryAdapter<T> {
 
     private LayoutInflater inflater;
 
-    public TuesdayListAdapter(Context context,
-                             ParseQueryAdapter.QueryFactory<Tuesday> queryFactory) {
+    public DayListAdapter(Context context,
+                          ParseQueryAdapter.QueryFactory<T> queryFactory){
         super(context, queryFactory);
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public View getItemView(Tuesday tuesday, View view, ViewGroup parent) {
+    public View getItemView(T day, View view, ViewGroup parent) {
         ViewHolder holder;
         if (view == null) {
             view = inflater.inflate(R.layout.list_item_day, parent, false);
@@ -38,7 +39,7 @@ public class TuesdayListAdapter extends ParseQueryAdapter<Tuesday> {
             holder = (ViewHolder) view.getTag();
         }
         TextView departTime = holder.departTime;
-        departTime.setText(tuesday.getDepart_time());
+        departTime.setText(day.getDepart_time());
 
         return view;
     }
@@ -46,5 +47,4 @@ public class TuesdayListAdapter extends ParseQueryAdapter<Tuesday> {
     private static class ViewHolder {
         TextView departTime;
     }
-
 }

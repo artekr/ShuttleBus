@@ -25,13 +25,7 @@ import com.parse.ParseQueryAdapter;
 import com.parse.SaveCallback;
 import com.yucun.shuttlebus.InfoActivity;
 import com.yucun.shuttlebus.R;
-import com.yucun.shuttlebus.adapter.FridayListAdapter;
-import com.yucun.shuttlebus.adapter.MondayListAdapter;
-import com.yucun.shuttlebus.adapter.SaturdayListAdapter;
-import com.yucun.shuttlebus.adapter.SundayListAdapter;
-import com.yucun.shuttlebus.adapter.ThursdayListAdapter;
-import com.yucun.shuttlebus.adapter.TuesdayListAdapter;
-import com.yucun.shuttlebus.adapter.WednesdayListAdapter;
+import com.yucun.shuttlebus.adapter.DayListAdapter;
 import com.yucun.shuttlebus.model.Friday;
 import com.yucun.shuttlebus.model.Monday;
 import com.yucun.shuttlebus.model.Saturday;
@@ -67,20 +61,21 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
     @InjectView(R.id.sgw_bt) Button sgw_bt;
     @InjectView(R.id.loyola_bt) Button loyola_bt;
 
-    MondayListAdapter mondaySGWListAdapter;
-    MondayListAdapter mondayLoyolaListAdapter;
-    TuesdayListAdapter tuesdaySGWListAdapter;
-    TuesdayListAdapter tuesdayLoyolaListAdapter;
-    WednesdayListAdapter wednesdaySGWListAdapter;
-    WednesdayListAdapter wednesdayLoyolaListAdapter;
-    ThursdayListAdapter thursdaySGWListAdapter;
-    ThursdayListAdapter thursdayLoyolaListAdapter;
-    FridayListAdapter fridaySGWListAdapter;
-    FridayListAdapter fridayLoyolaListAdapter;
-    SaturdayListAdapter saturdaySGWListAdapter;
-    SaturdayListAdapter saturdayLoyolaListAdapter;
-    SundayListAdapter sundaySGWListAdapter;
-    SundayListAdapter sundayLoyolaListAdapter;
+
+    DayListAdapter<Monday> mondaySGWListAdapter;
+    DayListAdapter<Monday> mondayLoyolaListAdapter;
+    DayListAdapter<Tuesday> tuesdaySGWListAdapter;
+    DayListAdapter<Tuesday> tuesdayLoyolaListAdapter;
+    DayListAdapter<Wednesday> wednesdaySGWListAdapter;
+    DayListAdapter<Wednesday> wednesdayLoyolaListAdapter;
+    DayListAdapter<Thursday> thursdaySGWListAdapter;
+    DayListAdapter<Thursday> thursdayLoyolaListAdapter;
+    DayListAdapter<Friday> fridaySGWListAdapter;
+    DayListAdapter<Friday> fridayLoyolaListAdapter;
+    DayListAdapter<Saturday> saturdaySGWListAdapter;
+    DayListAdapter<Saturday> saturdayLoyolaListAdapter;
+    DayListAdapter<Sunday> sundaySGWListAdapter;
+    DayListAdapter<Sunday> sundayLoyolaListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -126,8 +121,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                     }
                 };
 
-                sundaySGWListAdapter = new SundayListAdapter(getActivity(), sundaySGWQueryFactory);
-                sundayLoyolaListAdapter = new SundayListAdapter(getActivity(), sundayLoyolaQueryFactory);
+                sundaySGWListAdapter = new DayListAdapter<Sunday>(getActivity(), sundaySGWQueryFactory);
+                sundayLoyolaListAdapter = new DayListAdapter<Sunday>(getActivity(), sundayLoyolaQueryFactory);
 
                 // Attach the query adapter to the view
                 sgw_listview.setAdapter(sundaySGWListAdapter);
@@ -157,8 +152,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                     }
                 };
 
-                mondaySGWListAdapter = new MondayListAdapter(getActivity(), mondaySGWQueryFactory);
-                mondayLoyolaListAdapter = new MondayListAdapter(getActivity(), mondayLoyolaQueryFactory);
+                mondaySGWListAdapter = new DayListAdapter<Monday>(getActivity(), mondaySGWQueryFactory);
+                mondayLoyolaListAdapter = new DayListAdapter<Monday>(getActivity(), mondayLoyolaQueryFactory);
 
                 // Attach the query adapter to the view
                 sgw_listview.setAdapter(mondaySGWListAdapter);
@@ -188,8 +183,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                     }
                 };
 
-                tuesdaySGWListAdapter = new TuesdayListAdapter(getActivity(), tuesdaySGWQueryFactory);
-                tuesdayLoyolaListAdapter = new TuesdayListAdapter(getActivity(), tuesdayLoyolaQueryFactory);
+                tuesdaySGWListAdapter = new DayListAdapter<Tuesday>(getActivity(), tuesdaySGWQueryFactory);
+                tuesdayLoyolaListAdapter = new DayListAdapter<Tuesday>(getActivity(), tuesdayLoyolaQueryFactory);
 
                 // Attach the query adapter to the view
                 sgw_listview.setAdapter(tuesdaySGWListAdapter);
@@ -219,8 +214,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                     }
                 };
 
-                wednesdaySGWListAdapter = new WednesdayListAdapter(getActivity(), wednesdaySGWQueryFactory);
-                wednesdayLoyolaListAdapter = new WednesdayListAdapter(getActivity(), wednesdayLoyolaQueryFactory);
+                wednesdaySGWListAdapter = new DayListAdapter<Wednesday>(getActivity(), wednesdaySGWQueryFactory);
+                wednesdayLoyolaListAdapter = new DayListAdapter<Wednesday>(getActivity(), wednesdayLoyolaQueryFactory);
 
                 // Attach the query adapter to the view
                 sgw_listview.setAdapter(wednesdaySGWListAdapter);
@@ -252,8 +247,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                     }
                 };
 
-                thursdaySGWListAdapter = new ThursdayListAdapter(getActivity(), thursdaySGWQueryFactory);
-                thursdayLoyolaListAdapter = new ThursdayListAdapter(getActivity(), thursdayLoyolaQueryFactory);
+                thursdaySGWListAdapter = new DayListAdapter<Thursday>(getActivity(), thursdaySGWQueryFactory);
+                thursdayLoyolaListAdapter = new DayListAdapter<Thursday>(getActivity(), thursdayLoyolaQueryFactory);
 
                 // Attach the query adapter to the view
                 sgw_listview.setAdapter(thursdaySGWListAdapter);
@@ -283,8 +278,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                     }
                 };
 
-                fridaySGWListAdapter = new FridayListAdapter(getActivity(), fridaySGWQueryFactory);
-                fridayLoyolaListAdapter = new FridayListAdapter(getActivity(), fridayLoyolaQueryFactory);
+                fridaySGWListAdapter = new DayListAdapter<Friday>(getActivity(), fridaySGWQueryFactory);
+                fridayLoyolaListAdapter = new DayListAdapter<Friday>(getActivity(), fridayLoyolaQueryFactory);
 
                 // Attach the query adapter to the view
                 sgw_listview.setAdapter(fridaySGWListAdapter);
@@ -314,8 +309,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                     }
                 };
 
-                saturdaySGWListAdapter = new SaturdayListAdapter(getActivity(), saturdaySGWQueryFactory);
-                saturdayLoyolaListAdapter = new SaturdayListAdapter(getActivity(), saturdayLoyolaQueryFactory);
+                saturdaySGWListAdapter = new DayListAdapter<Saturday>(getActivity(), saturdaySGWQueryFactory);
+                saturdayLoyolaListAdapter = new DayListAdapter<Saturday>(getActivity(), saturdayLoyolaQueryFactory);
 
                 // Attach the query adapter to the view
                 sgw_listview.setAdapter(saturdaySGWListAdapter);
