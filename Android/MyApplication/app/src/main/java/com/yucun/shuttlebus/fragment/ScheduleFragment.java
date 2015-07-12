@@ -3,6 +3,7 @@ package com.yucun.shuttlebus.fragment;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
@@ -14,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -54,7 +56,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by yucunli on 2015-07-02.
  */
-public class ScheduleFragment extends Fragment {
+public class ScheduleFragment extends Fragment implements Button.OnClickListener{
 
     private static final long LOCATION_TIMEOUT_SECONDS = 20;
 
@@ -63,6 +65,8 @@ public class ScheduleFragment extends Fragment {
 
     @InjectView(R.id.sgw_listview) ListView sgw_listview;
     @InjectView(R.id.loyola_listview) ListView loyola_listview;
+    @InjectView(R.id.sgw_bt) Button sgw_bt;
+    @InjectView(R.id.loyola_bt) Button loyola_bt;
 
     MondayListAdapter mondaySGWListAdapter;
     MondayListAdapter mondayLoyolaListAdapter;
@@ -358,6 +362,9 @@ public class ScheduleFragment extends Fragment {
                     }
                 });
 
+        sgw_bt.setOnClickListener(this);
+        loyola_bt.setOnClickListener(this);
+
         return rootView;
     }
 
@@ -370,16 +377,6 @@ public class ScheduleFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.sgw:
-                sgw_listview.setVisibility(View.VISIBLE);
-                loyola_listview.setVisibility(View.INVISIBLE);
-
-                return true;
-            case R.id.loyola:
-                sgw_listview.setVisibility(View.INVISIBLE);
-                loyola_listview.setVisibility(View.VISIBLE);
-
-                return true;
             case R.id.info:
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), InfoActivity.class);
@@ -387,6 +384,22 @@ public class ScheduleFragment extends Fragment {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sgw_bt:
+                sgw_listview.setVisibility(View.VISIBLE);
+                loyola_listview.setVisibility(View.INVISIBLE);
+
+                return;
+            case R.id.loyola_bt:
+                sgw_listview.setVisibility(View.INVISIBLE);
+                loyola_listview.setVisibility(View.VISIBLE);
+
+                return;
         }
     }
 
@@ -592,4 +605,5 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
+
 }

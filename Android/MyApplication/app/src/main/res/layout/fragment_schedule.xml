@@ -3,10 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/sgw_bt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="SGW"
+            android:textColor="@color/white"
+            android:background="@color/purple"/>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/loyola_bt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Loyola"
+            android:textColor="@color/white"
+            android:background="@color/purple"/>
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/sgw_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_layout">
 
     </ListView>
 
@@ -14,6 +46,7 @@
         android:id="@+id/loyola_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/bottom_layout"
         android:visibility="invisible">
 
     </ListView>
