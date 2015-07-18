@@ -93,8 +93,8 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
         ButterKnife.inject(this, rootView);
 
         Calendar calendar = Calendar.getInstance();
-        //int day = calendar.get(Calendar.DAY_OF_WEEK);
-        int day = Calendar.MONDAY;
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        
         switch (day) {
             case Calendar.SUNDAY:
                 // Set up the Parse query to use in the adapter
