@@ -2,14 +2,8 @@
 <resources>
     
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:style/Theme.Holo.Light">
-
-    </style>
-
-    
-    <style name="InfoTheme" parent="android:style/Theme.Holo.Light">
-        
-        <item name="android:homeAsUpIndicator">@drawable/ic_ab_up_white</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     
