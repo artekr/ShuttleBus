@@ -6,5 +6,9 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    
+
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/purple</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
 </resources>
