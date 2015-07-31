@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         // Set a toolbar to replace the action bar.
-        toolbar.setTitle("Shuttle Bus");
-        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
 
         if (savedInstanceState == null) {

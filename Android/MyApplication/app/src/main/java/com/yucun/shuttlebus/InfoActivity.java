@@ -22,9 +22,9 @@ public class InfoActivity extends AppCompatActivity {
         ButterKnife.inject(this);
 
         // Set a toolbar to replace the action bar.
-        toolbar.setTitle("Shuttle Bus");
         toolbar.setNavigationIcon(R.drawable.ic_ab_up_white);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override
