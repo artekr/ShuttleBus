@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -63,6 +64,7 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
     @InjectView(R.id.loyola_listview) ListView loyola_listview;
     @InjectView(R.id.sgw_bt) Button sgw_bt;
     @InjectView(R.id.loyola_bt) Button loyola_bt;
+    @InjectView(R.id.default_content) TextView default_content;
 
 
     DayListAdapter<Monday> mondaySGWListAdapter;
@@ -413,6 +415,11 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                                         if (!getActivity().isFinishing()) {
                                             sundaySGWListAdapter.loadObjects();
                                             sundayLoyolaListAdapter.loadObjects();
+
+                                            if(sundaySGWListAdapter.getCount() == 0 && sundayLoyolaListAdapter.getCount() == 0) {
+                                                default_content.setVisibility(View.VISIBLE);
+                                            }
+
                                         }
                                     } else {
                                         Log.i("MainActivity",
@@ -442,6 +449,11 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                                         if (!getActivity().isFinishing()) {
                                             mondaySGWListAdapter.loadObjects();
                                             mondayLoyolaListAdapter.loadObjects();
+
+                                            if(mondaySGWListAdapter.getCount() == 0 && mondayLoyolaListAdapter.getCount() == 0) {
+                                                default_content.setVisibility(View.VISIBLE);
+                                            }
+
                                         }
                                     } else {
                                         Log.i("MainActivity",
@@ -471,6 +483,11 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                                         if (!getActivity().isFinishing()) {
                                             tuesdaySGWListAdapter.loadObjects();
                                             tuesdayLoyolaListAdapter.loadObjects();
+
+                                            if(tuesdaySGWListAdapter.getCount() == 0 && tuesdayLoyolaListAdapter.getCount() == 0) {
+                                                default_content.setVisibility(View.VISIBLE);
+                                            }
+
                                         }
                                     } else {
                                         Log.i("MainActivity",
@@ -500,6 +517,11 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                                         if (!getActivity().isFinishing()) {
                                             wednesdaySGWListAdapter.loadObjects();
                                             wednesdayLoyolaListAdapter.loadObjects();
+
+                                            if(wednesdaySGWListAdapter.getCount() == 0 && wednesdayLoyolaListAdapter.getCount() == 0) {
+                                                default_content.setVisibility(View.VISIBLE);
+                                            }
+
                                         }
                                     } else {
                                         Log.i("MainActivity",
@@ -529,6 +551,11 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                                         if (!getActivity().isFinishing()) {
                                             thursdaySGWListAdapter.loadObjects();
                                             thursdayLoyolaListAdapter.loadObjects();
+
+                                            if(thursdaySGWListAdapter.getCount() == 0 && thursdayLoyolaListAdapter.getCount() == 0) {
+                                                default_content.setVisibility(View.VISIBLE);
+                                            }
+
                                         }
                                     } else {
                                         Log.i("MainActivity",
@@ -558,6 +585,11 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                                         if (!getActivity().isFinishing()) {
                                             fridaySGWListAdapter.loadObjects();
                                             fridayLoyolaListAdapter.loadObjects();
+
+                                            if(fridaySGWListAdapter.getCount() == 0 && fridayLoyolaListAdapter.getCount() == 0) {
+                                                default_content.setVisibility(View.VISIBLE);
+                                            }
+
                                         }
                                     } else {
                                         Log.i("MainActivity",
@@ -587,6 +619,10 @@ public class ScheduleFragment extends Fragment implements Button.OnClickListener
                                         if (!getActivity().isFinishing()) {
                                             saturdaySGWListAdapter.loadObjects();
                                             saturdayLoyolaListAdapter.loadObjects();
+
+                                            if(saturdaySGWListAdapter.getCount() == 0 && saturdayLoyolaListAdapter.getCount() == 0) {
+                                                default_content.setVisibility(View.VISIBLE);
+                                            }
                                         }
                                     } else {
                                         Log.i("MainActivity",
