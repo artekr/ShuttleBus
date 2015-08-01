@@ -7,15 +7,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.yucun.shuttlebus.model.Info;
-import com.yucun.shuttlebus.model.Monday;
-import com.yucun.shuttlebus.model.Sunday;
-
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -40,11 +35,8 @@ public class InfoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        ParseQuery<Info> query = Info.getQuery();
-        query.fromLocalDatastore();
-        query.orderByDescending("createdAt");
-        
-        loadInfoData();
+        loadInfoDataFromLocal();
+        loadInfoDataFromServer();
     }
 
     @Override
@@ -57,7 +49,26 @@ public class InfoActivity extends AppCompatActivity {
         return false;
     }
 
-    private void loadInfoData() {
+    private void loadInfoDataFromLocal() {
+        ParseQuery<Info> query = Info.getQuery();
+        query.fromLocalDatastore();
+        query.orderByDescending("createdAt");
+        query.getFirstInBackground(new GetCallback<Info>() {
+
+            @Override
+            public void done(Info info, ParseException e) {
+                if (info == null) {
+                    Log.d("Parse", "The getFirst request failed.");
+                } else {
+                    // got the most recently modified object... do something with it here
+                    title.setText(info.getTitle());
+                    content.setText(info.getContent() + info.getCreatedAt().toString());
+                }
+            }
+        });
+    }
+
+    private void loadInfoDataFromServer() {
         ParseQuery<Info> query = Info.getQuery();
         query.orderByDescending("createdAt");
         query.getFirstInBackground(new GetCallback<Info>() {
@@ -68,9 +79,9 @@ public class InfoActivity extends AppCompatActivity {
                     Log.d("Parse", "The getFirst request failed.");
                 } else {
                     // got the most recently modified object... do something with it here
-                    info.pinInBackground("info");
+                    info.pinInBackground();
                     title.setText(info.getTitle());
-                    content.setText(info.getContent()+info.getCreatedAt().toString());
+                    content.setText(info.getContent() + info.getCreatedAt().toString());
                 }
             }
         });
