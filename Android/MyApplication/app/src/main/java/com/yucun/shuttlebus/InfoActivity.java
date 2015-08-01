@@ -3,7 +3,19 @@ package com.yucun.shuttlebus;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.yucun.shuttlebus.model.Info;
+import com.yucun.shuttlebus.model.Monday;
+import com.yucun.shuttlebus.model.Sunday;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -14,6 +26,8 @@ import butterknife.InjectView;
 public class InfoActivity extends AppCompatActivity {
 
     @InjectView(R.id.toolbar) Toolbar toolbar;
+    @InjectView(R.id.title) TextView title;
+    @InjectView(R.id.content) TextView content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +39,12 @@ public class InfoActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_ab_up_white);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        ParseQuery<Info> query = Info.getQuery();
+        query.fromLocalDatastore();
+        query.orderByDescending("createdAt");
+        
+        loadInfoData();
     }
 
     @Override
@@ -35,5 +55,24 @@ public class InfoActivity extends AppCompatActivity {
                 break;
         }
         return false;
+    }
+
+    private void loadInfoData() {
+        ParseQuery<Info> query = Info.getQuery();
+        query.orderByDescending("createdAt");
+        query.getFirstInBackground(new GetCallback<Info>() {
+
+            @Override
+            public void done(Info info, ParseException e) {
+                if (info == null) {
+                    Log.d("Parse", "The getFirst request failed.");
+                } else {
+                    // got the most recently modified object... do something with it here
+                    info.pinInBackground("info");
+                    title.setText(info.getTitle());
+                    content.setText(info.getContent()+info.getCreatedAt().toString());
+                }
+            }
+        });
     }
 }
