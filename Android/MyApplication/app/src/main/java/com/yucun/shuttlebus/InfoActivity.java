@@ -1,5 +1,7 @@
 package com.yucun.shuttlebus;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +25,7 @@ public class InfoActivity extends AppCompatActivity {
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.title) TextView title;
     @InjectView(R.id.content) TextView content;
+    @InjectView(R.id.version) TextView version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,14 @@ public class InfoActivity extends AppCompatActivity {
 
         loadInfoDataFromLocal();
         loadInfoDataFromServer();
+
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_META_DATA);
+            version.setText("version: " + pInfo.versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
