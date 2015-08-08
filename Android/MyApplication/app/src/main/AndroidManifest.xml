@@ -71,6 +71,9 @@
 
         <!-- replace @drawable/push_icon with your push icon identifier -->
         <meta-data android:name="com.parse.push.notification_icon" android:resource="@drawable/notification_template_icon_bg"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3d60b4c96a9598505de98c5d5f838458a6d66f22" />
     </application>
 
 </manifest>
