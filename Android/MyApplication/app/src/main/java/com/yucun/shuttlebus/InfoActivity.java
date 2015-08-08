@@ -25,6 +25,7 @@ public class InfoActivity extends AppCompatActivity {
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.title) TextView title;
     @InjectView(R.id.content) TextView content;
+    @InjectView(R.id.contact) TextView contact;
     @InjectView(R.id.version) TextView version;
 
     @Override
@@ -74,6 +75,7 @@ public class InfoActivity extends AppCompatActivity {
                     // got the most recently modified object... do something with it here
                     title.setText(info.getTitle());
                     content.setText(info.getContent() + info.getCreatedAt().toString());
+                    contact.setText("Contact: " + info.getEmail());
                 }
             }
         });
@@ -93,6 +95,7 @@ public class InfoActivity extends AppCompatActivity {
                     info.pinInBackground();
                     title.setText(info.getTitle());
                     content.setText(info.getContent() + info.getCreatedAt().toString());
+                    contact.setText("Contact: " + info.getEmail());
                 }
             }
         });

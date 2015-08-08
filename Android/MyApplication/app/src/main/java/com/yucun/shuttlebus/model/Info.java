@@ -17,6 +17,10 @@ public class Info extends ParseObject {
         return getString("title");
     }
 
+    public String getEmail() {
+        return getString("email");
+    }
+
     public static ParseQuery<Info> getQuery() {
         return ParseQuery.getQuery(Info.class);
     }
